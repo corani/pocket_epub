@@ -1,0 +1,24 @@
+#!/bin/bash
+function cleanup {
+    if [ -f script ]; then
+        rm script
+    fi
+    if [ -d work ]; then
+        rm -rf work
+    fi
+}
+
+function setup {
+    cleanup
+    if [ ! -d cache ]; then
+        mkdir cache
+    fi
+    if [ ! -d epub ]; then
+        mkdir epub
+    fi
+    mkdir work
+}
+
+setup
+python p2ep.py
+cleanup
