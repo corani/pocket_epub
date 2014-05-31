@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -f hashes ]; then
+    rm hashes
+fi
+for FILE in `find * -type f | grep -v "^hashes" | sort`; do
+    sha1sum $FILE >> hashes
+done
+gpg --verify hashes.sig
+rm hashes
