@@ -147,7 +147,7 @@ class P2eP(threading.Thread):
 
     def convert(self):
         cherrypy.log("Start converting")
-        call(['wget', 'http://127.0.0.1:1337/script'])
+        call(['wget', '-q', 'http://127.0.0.1:1337/script'])
         call(['bash', './script'])
 
     def foreground(self):
@@ -157,9 +157,6 @@ class P2eP(threading.Thread):
             self.convert()
         else:
             cherrypy.engine.exit()
-
-    def start(self):
-        threading.Thread.start(self)
 
 p = P2eP()
 p.start()
